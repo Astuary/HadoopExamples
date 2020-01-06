@@ -1,0 +1,17 @@
+grunt> employee LOAD '/pigInput' using PigStorage(',') AS (ssn:chararray, name:chararray, department:chararray, city:chararray);
+
+grunt> dump employee;
+
+grunt> emp_foreach = foreach employee generate name, department;
+
+grunt> dump emp_foreach;
+
+grunt> emp_filter = filter employee by city == 'Austin';
+
+grunt> dump emp_filter;
+
+grunt> emp_order = order employee by ssn desc;
+
+grunt> dump emp_order;
+
+grunt> STORE emp_filter into '/pigresult';
